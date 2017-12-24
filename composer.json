@@ -1,4 +1,9 @@
 {
+    "name": "pulp-less",
+    "version": "0.0.2",
+    "autoload": {
+        "psr-0": { "Pulp\\": "src/"}
+    },
     "require": {
         "asenar/less.php": "v1.7.0.14"
     }
