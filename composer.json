@@ -1,0 +1,5 @@
+{
+    "require": {
+        "asenar/less.php": "v1.7.0.14"
+    }
+}
