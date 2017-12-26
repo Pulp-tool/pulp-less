@@ -8,7 +8,7 @@ class Less  extends DataPipe {
 	public $parser;
 
 	public function __construct($opts) {
-		$this->parser = new \Less_Parser();
+		$this->parser = new \Less_Parser($opts);
 	}
 
     public function __invoke($data) { 
