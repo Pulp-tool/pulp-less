@@ -2,6 +2,7 @@
 namespace Pulp;
 
 use Pulp\DataPipe;
+use Pulp\Fs\VirtualFile as vfile;
 
 class Less  extends DataPipe { 
 
@@ -16,10 +17,14 @@ class Less  extends DataPipe {
     } 
 
 	public function write($data) {
-		$this->parser->parseFile( $data->getPathName() );
-	}
+		$cssFile = $data->getPathname();
+		$cssFile = str_replace('.less', '.css', $cssFile);
+		$file = new vfile( $cssFile );
 
-    public function end($data=null) { 
-		$this->emit('data', [$this->parser->getCss()]);
-    } 
+		$this->parser->parseFile( $data->getPathname() );
+		$file->setContents(
+			$this->parser->getCss()
+		);
+		$this->emit('data', [$file]);
+	}
 }
