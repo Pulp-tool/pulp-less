@@ -16,7 +16,7 @@ class Less  extends DataPipe {
 		echo "got invoked...\n";
     } 
 
-	public function write($data) {
+	protected function _onWrite($data) {
 		$cssFile = $data->getPathname();
 		$cssFile = str_replace('.less', '.css', $cssFile);
 		$file = new vfile( $cssFile );
@@ -25,6 +25,6 @@ class Less  extends DataPipe {
 		$file->setContents(
 			$this->parser->getCss()
 		);
-		$this->emit('data', [$file]);
+		$this->push($file);
 	}
 }
